@@ -2,7 +2,7 @@
 session_start();
  if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
   echo "<link href='style.css' rel='stylesheet' type='text/css'>
- <center>Untuk mengakses modul, Anda harus login <br>";
+        <center>Untuk mengakses modul, Anda harus login <br>";
   echo "<a href=../../index.php><b>LOGIN</b></a></center>";
 }
 else{
@@ -19,7 +19,7 @@ else{
 
   // Input user
   if ($module=='users' AND $act=='input'){
-  	$cari=mysql_query("SELECT * FROM users where username='$_POST[username]'");
+  	$cari=mysql_query("SELECT * FROM users WHERE username='$_POST[username]'");
   	$ketemu=mysql_num_rows($cari);
   	if ($ketemu > 0){
   	 echo "<center><h2>Username sudah dipakai..., ";

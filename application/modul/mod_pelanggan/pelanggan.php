@@ -89,9 +89,10 @@ switch($_GET['act']){
           	<table id='example1' class='table table-bordered table-hover' style='margin-top:20px;'>
           		<tr>
           			<th>No</th>
-                <th>ID.Cust.</th>
+                <th>ID Customer</th>
                 <th>Nama</th>
                 <th>Telp</th>
+                <th>Email</th>
                 <th><center>Proses</th>
           		</tr>"; 
               $no=1;
@@ -102,9 +103,8 @@ switch($_GET['act']){
                   <td>$no</td>
             	    <td>$r[id_pelanggan]</td>
                   <td>$r[nama]</td>
-                  <td>$r[alamat]</td>
-                  <td>$r[kota]</td>
                   <td>$r[telp]</td>
+                  <td>$r[email]</td>
                   <td>
             				<center>
                       <a href=?module=pelanggan&act=detailpelanggan&id=$r[id_pelanggan]><span class=\"glyphicon glyphicon-search\"></span>&nbsp;&nbsp;&nbsp;
@@ -151,26 +151,49 @@ switch($_GET['act']){
             <form method=POST action=$aksi?module=pelanggan&act=update>
             <input type=hidden name=id value='$r[id_pelanggan]'>
         			<table id='example1' class='table table-bordered table-striped'>
-        			<tr><td>Nama Lengkap</td><td><input class=\"form-control\" type=text name='nama' value='$r[nama]'></td></tr>
-        			<tr><td>Alamat</td><td><input class=\"form-control\" type=text name='alamat' value='$r[alamat]'></td></tr>            
-        			<tr><td>Kota</td><td><input class=\"form-control\" type=text name='kota' value='$r[kota]'></td></tr> 
-        			<tr><td>No.Telp</td><td><input class=\"form-control\" type=text name='telp' value='$r[telp]'></td></tr> 
-        			<tr><td>No.HP GSM1</td><td><input class=\"form-control\" type=text name='gsm1' value='$r[gsm1]'></td></tr> 
-        			<tr><td>No.HP GSM2</td><td><input class=\"form-control\" type=text name='gsm2' value='$r[gsm2]'></td></tr> 
-        			<tr><td>No.HP CDMA</td><td><input class=\"form-control\" type=text name='cdma' value='$r[cdma]'></td></tr> 
-        			<tr><td>E-mail</td><td><input class=\"form-control\" type=text name='email' value='$r[email]'></td></tr>
-        			<tr><td colspan=2>
-              				<input class=\"btn btn-primary\" type=submit value=Update>
-              				<input class=\"btn btn-danger\" type=button value=Batal onclick=self.history.back()></td></tr>
+          			<tr><td>Nama Lengkap</td><td><input class=\"form-control\" type=text name='nama' value='$r[nama]'></td></tr>
+          			<tr><td>Alamat</td><td><input class=\"form-control\" type=text name='alamat' value='$r[alamat]'></td></tr>            
+          			<tr><td>Kota</td><td><input class=\"form-control\" type=text name='kota' value='$r[kota]'></td></tr> 
+          			<tr><td>No.Telp</td><td><input class=\"form-control\" type=text name='telp' value='$r[telp]'></td></tr> 
+          			<tr><td>No.HP GSM1</td><td><input class=\"form-control\" type=text name='gsm1' value='$r[gsm1]'></td></tr> 
+          			<tr><td>No.HP GSM2</td><td><input class=\"form-control\" type=text name='gsm2' value='$r[gsm2]'></td></tr> 
+          			<tr><td>No.HP CDMA</td><td><input class=\"form-control\" type=text name='cdma' value='$r[cdma]'></td></tr> 
+          			<tr><td>E-mail</td><td><input class=\"form-control\" type=text name='email' value='$r[email]'></td></tr>
+          			<tr><td colspan=2>
+                				<input class=\"btn btn-primary\" type=submit value=Update>
+                				<input class=\"btn btn-danger\" type=button value=Batal onclick=self.history.back()></td></tr>
         			</table>
         		</form>
+          </div>"; 
+  break;  
+
+  case "detailpelanggan":
+    $edit=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
+    $r=mysql_fetch_array($edit);
+    echo "
+          <div class=\"col-md-12\">
+            <h2>Detail Pelanggan</h2>
+            <input type=hidden name=id value='$r[id_pelanggan]'>
+              <table id='example1' class='table table-bordered table-hover'>
+                <tr><td>Nama Lengkap</td><td>$r[nama]</td></tr>
+                <tr><td>Alamat</td><td>$r[alamat]</td></tr>            
+                <tr><td>Kota</td><td>$r[kota]</td></tr> 
+                <tr><td>No.Telp</td><td>$r[telp]</td></tr> 
+                <tr><td>No.HP GSM1</td><td>$r[gsm1]</td></tr> 
+                <tr><td>No.HP GSM2</td><td>$r[gsm2]</td></tr> 
+                <tr><td>No.HP CDMA</td><td>$r[cdma]</td></tr> 
+                <tr><td>E-mail</td><td>$r[email]</td></tr>
+                <tr><td colspan=2>
+                        <input class=\"btn btn-danger\" type=button value=Batal onclick=self.history.back()></td></tr>
+              </table>
+            </form>
           </div>"; 
     break;  
 	
   case "caripelanggan":
       $field=$_POST['field'];
       $keyword=$_POST['keyword'];
-      $tampil4 = mysql_query("SELECT * FROM pelanggan where $field like '%$keyword' ");
+      $tampil4 = mysql_query("SELECT * FROM pelanggan WHERE $field LIKE '%$keyword' ");
       echo "
             <div class=\"col-md-12\">
               <h2>Cari Pelanggan</h2>
@@ -189,10 +212,10 @@ switch($_GET['act']){
           				<td>$no</td>
                   <td>$r4[nama]</td>
                   <td>$r4[telp]</td>
-                       <td><center>
-                             <a href=?module=pelanggan&act=detailpelanggan&id=$r[id_pelanggan]><span class=\"glyphicon glyphicon-search\"></span>&nbsp;&nbsp;&nbsp;
-                             <a href=?module=pelanggan&act=editpelanggan&id=$r[0]><img src='images/edit.png'></a> &nbsp&nbsp
-                             <a href=$aksi?module=pelanggan&act=hapus&id=$r[0]><img src='images/delete.png'></a></center></td></tr>";
+                  <td><center>
+                             <a href=?module=pelanggan&act=detailpelanggan&id=$r4[id_pelanggan]><span class=\"glyphicon glyphicon-search\"></span>&nbsp;&nbsp;&nbsp;
+                             <a href=?module=pelanggan&act=editpelanggan&id=$r4[id_pelanggan]><span class=\"glyphicon glyphicon-pencil\"></span>&nbsp;&nbsp;&nbsp;
+                             <a href=$aksi?module=pelanggan&act=hapus&id=$r4[id_pelanggan]><span class=\"glyphicon glyphicon-remove\"></span></center>";
                 $no++;
               }
               echo "</table>

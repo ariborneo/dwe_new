@@ -29,7 +29,7 @@ else{
       
       echo "
             <div class=\"col-md-12\">
-          		<table id='example1' class='table table-condensed table-hover'>
+          		<table id='example1' class='table table-bordered table-hover'>
           			<tr>
           				<th>No</th>
                   <th>Username</th>
