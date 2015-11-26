@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2015 at 03:09 PM
+-- Generation Time: Nov 26, 2015 at 10:39 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -419,8 +419,7 @@ INSERT INTO `mainmenu` (`id_main`, `nama_menu`, `link`, `aktif`, `urutan`, `leve
 (7, 'Finance', '#', 'Y', 6, 'admin'),
 (8, 'Other', '#', 'Y', 9, 'admin'),
 (9, 'Media', '#', 'Y', 10, 'admin'),
-(10, 'Master Data', '#', 'Y', 0, 'admin'),
-(14, 'Cuti Karyawan', '?module=cuti', 'Y', 12, 'admin');
+(10, 'Master Data', '#', 'Y', 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -2131,32 +2130,45 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `kota`, `telp`, `gsm1
 
 CREATE TABLE IF NOT EXISTS `penjualan` (
   `id_penjualan` int(6) NOT NULL AUTO_INCREMENT,
-  `kd_dispenser` varchar(4) NOT NULL,
-  `id_op` varchar(6) NOT NULL,
-  `meteran_awal` decimal(12,2) NOT NULL,
-  `meteran_akhir` decimal(12,2) NOT NULL,
-  `tgl_penjualan` date NOT NULL,
-  `jam_mulai` varchar(5) NOT NULL,
-  `jam_selesai` varchar(5) NOT NULL,
-  `kd_barang` varchar(15) NOT NULL,
-  `qty` int(5) NOT NULL,
-  `hpp` decimal(12,2) NOT NULL,
-  `harga_jual` decimal(12,2) NOT NULL,
-  `total` decimal(12,2) NOT NULL,
-  `cash` decimal(12,2) NOT NULL,
-  `kupon` decimal(12,2) NOT NULL,
-  `kredit` decimal(12,2) NOT NULL,
-  `debit` decimal(12,2) NOT NULL,
+  `kd_dispenser` varchar(4) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `id_op` varchar(6) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `meteran_awal` decimal(12,2) DEFAULT NULL,
+  `meteran_akhir` decimal(12,2) DEFAULT NULL,
+  `tgl_penjualan` date DEFAULT NULL,
+  `jam_mulai` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `jam_selesai` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `kd_barang` varchar(15) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `qty` int(5) DEFAULT NULL,
+  `hpp` decimal(12,2) DEFAULT NULL,
+  `harga_jual` decimal(12,2) DEFAULT NULL,
+  `total` decimal(12,2) DEFAULT NULL,
+  `cash` decimal(12,2) DEFAULT NULL,
+  `kupon` decimal(12,2) DEFAULT NULL,
+  `kredit` decimal(12,2) DEFAULT NULL,
+  `debit` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `penjualan`
 --
 
 INSERT INTO `penjualan` (`id_penjualan`, `kd_dispenser`, `id_op`, `meteran_awal`, `meteran_akhir`, `tgl_penjualan`, `jam_mulai`, `jam_selesai`, `kd_barang`, `qty`, `hpp`, `harga_jual`, `total`, `cash`, `kupon`, `kredit`, `debit`) VALUES
-(1, '1A2', '11', '5000000.00', '5001000.00', '2015-10-01', '06:00', '18:00', 'SP1', 1000, '5000.00', '7400.00', '7400000.00', '0.00', '0.00', '0.00', '7400000.00'),
-(11, '1A1', '10', '5000.00', '6000.00', '2015-11-18', '06:00', '18:00', 'SP1', 1000, '5000.00', '6000.00', '6000000.00', '10000.00', '0.00', '0.00', '0.00');
+(22, '1A1', '10', '5000.00', '5500.00', '2015-11-26', '06:00', '18:00', 'SP1', 500, '0.00', '6000.00', '3000000.00', '10000.00', '0.00', '0.00', '0.00'),
+(23, '1A2', '10', '6000.00', '7000.00', '2015-11-26', '06:00', '18:00', 'SP2', 1000, '5000.00', '6000.00', '6000000.00', '10000.00', '0.00', '0.00', '0.00');
+
+--
+-- Triggers `penjualan`
+--
+DROP TRIGGER IF EXISTS `as`;
+DELIMITER //
+CREATE TRIGGER `as` AFTER INSERT ON `penjualan`
+ FOR EACH ROW BEGIN
+UPDATE stok SET jumlah_stok = jumlah_stok - NEW.qty
+WHERE kd_barang = NEW.kd_barang;
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -2270,11 +2282,10 @@ CREATE TABLE IF NOT EXISTS `stok` (
 --
 
 INSERT INTO `stok` (`id_stok`, `kd_barang`, `jumlah_stok`, `kd_cabang`, `harga_awal`, `hpp`) VALUES
-(1, 'SP1', 4939, '002', '5000.00', '5000.00'),
-(2, 'SP2', 4986, '001', '5000.00', '5000.00'),
-(3, 'SP3', 14998, '001', '5000.00', '5000.00'),
-(4, 'SP1', 4970, '001', '5000.00', '5000.00'),
-(5, 'SP4', 4980, '001', '5000.00', '6000.00');
+(1, 'SP1', 4500, '002', '5000.00', '5000.00'),
+(2, 'SP2', 4000, '001', '5000.00', '5000.00'),
+(3, 'SP3', 5000, '001', '5000.00', '5000.00'),
+(5, 'SP4', 5000, '001', '5000.00', '6000.00');
 
 -- --------------------------------------------------------
 
@@ -2291,7 +2302,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `urutan` int(3) NOT NULL,
   `level` varchar(200) NOT NULL,
   PRIMARY KEY (`id_sub`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `submenu`
@@ -2313,6 +2324,7 @@ INSERT INTO `submenu` (`id_sub`, `nama_sub`, `link_sub`, `id_main`, `aktif`, `ur
 (62, 'Album', '?module=album', 9, 'Y', 29, 'admin'),
 (63, 'Gallery', '?module=gallery', 9, 'Y', 29, 'admin'),
 (78, 'Pembayaran', '?module=pembayaran', 7, 'Y', 0, 'admin'),
+(99, 'Supplier', '?module=supplier', 10, 'Y', 5, 'admin'),
 (82, 'Produk', '?module=produk', 5, 'Y', 3, 'admin'),
 (85, 'Master Barang', '?module=masterbarang', 10, 'Y', 1, 'admin'),
 (86, 'Kategori', '?module=kategori', 10, 'Y', 1, 'admin'),
@@ -2437,7 +2449,7 @@ INSERT INTO `users` (`id_user`, `nama`, `alamat`, `kota`, `telp`, `id_cabang`, `
 (187, 'Olani Ertina Veronica', 'Jalan Haji Taiman barat no.7 Rt. 002/010 Pasar Rebo, 13760', 'Jakarta Timur', '081287265595', '02', '182', 'gm', '92073d2fe26e543ce222cc0fb0b7d7a0', 'gm', 'olani.veronica@1firstrent.com', 'N', '7b7pbsqooqsa2o4t5le0gj4624', 'olani.jpg'),
 (182, 'Suryo Kuspurwoko', 'JL, Kenari', 'Jakarta', '08143444', '02', '0', 'director', '3d4e992d8d8a7d848724aa26ed7f4176', 'director', 'sutyo@yahoo.com', 'N', 'rh107nnkc8b627p2qe9bnrgod7', 'suryo.jpg'),
 (183, 'Meilina Lubis', 'Tanjung Priok', 'Jakarta Utara', '0811425255', '01', '205', 'supervisor', '09348c20a019be0318387c08df7a783d', 'supervisor', 'meilina@1firstrent.com', 'N', 'ai98tskl3h1blsmhgnd1lqtku3', 'lina.jpg'),
-(193, 'Dani Yusuf', 'Mawar 4 No.21 Perumnas 1 Bekasi', 'Bekasi', '0813552522', '01', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'daniyusuf@yahoo.com', 'N', '1vpb5heum60ou697qafa1rdte0', 'daniyusuf.jpg'),
+(193, 'Dani Yusuf', 'Mawar 4 No.21 Perumnas 1 Bekasi', 'Bekasi', '0813552522', '01', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'daniyusuf@yahoo.com', 'N', 'rk2984ee5je8s02k93tihgiln2', 'daniyusuf.jpg'),
 (194, 'Fitri Awaliyah', 'JL. Jalak Suren', 'Jakarta', '088945252', '02', '183', 'sales1', '00db8f14ff00dd9a2e707391332c3447', 'sales', 'fitri.awaliyah@1firstrent.com', 'N', 'a63gs1fcaue0ahjn6cq2bqkbd3', 'fitriawaliyah.jpg');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
