@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+error_reporting(0);
 include "config/koneksi.php";
 	if (empty($_SESSION['username']) AND empty($_SESSION['passuser'])){
 	header ("location:index.php");

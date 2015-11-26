@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 18, 2015 at 07:33 
--- Server version: 5.1.37
--- PHP Version: 5.3.0
+-- Host: 127.0.0.1
+-- Generation Time: Nov 25, 2015 at 03:09 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `album` (
   `gbr_album` varchar(100) COLLATE latin1_general_ci NOT NULL,
   `aktif` enum('Y','N') COLLATE latin1_general_ci NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`id_album`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id_album`, `jdl_album`, `album_seo`, `gbr_album`, `aktif`) VALUES
-(21, 'Kartun', 'kartun', '476928sonic.jpg', 'Y'),
+(21, 'Kartun Sonic Atuh', 'kartun-sonic-atuh', '476928sonic.jpg', 'Y'),
 (20, 'Pernikahan', 'pernikahan', '146667nikah.jpg', 'Y'),
 (18, 'Bayi', 'bayi', '246551silvestree.jpg', 'Y'),
 (12, 'Ilustrator', 'ilustrator', '987701family.jpg', 'Y'),
@@ -62,11 +63,6 @@ CREATE TABLE IF NOT EXISTS `anuitas` (
   `ang` decimal(12,2) NOT NULL,
   PRIMARY KEY (`id_anu`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `anuitas`
---
-
 
 -- --------------------------------------------------------
 
@@ -187,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `cabang` (
   PRIMARY KEY (`id_cabang`),
   UNIQUE KEY `id_cabang` (`id_cabang`),
   UNIQUE KEY `kd_cabang` (`kd_cabang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `cabang`
@@ -196,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `cabang` (
 INSERT INTO `cabang` (`id_cabang`, `kd_cabang`, `nama_cabang`, `alamat`, `telp`, `pic`) VALUES
 (4, '002', 'BKS', 'Jalan Raya Bekasi', '0219275656', 'Ibrahim'),
 (5, '003', 'JKT', 'Jalan Raya Jakarta', '0219289495', 'Buton'),
-(6, '001', 'BGR', 'Jalan Raya Bogor', '0219712323', 'Pahmil');
+(6, '001', 'BGR', 'Jalan Raya Bogor', '0218921382', 'Pahmil');
 
 -- --------------------------------------------------------
 
@@ -212,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `cuti` (
   `hp` varchar(20) COLLATE latin1_general_ci NOT NULL,
   `jumlah_cuti` int(2) NOT NULL,
   PRIMARY KEY (`id_cuti`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `cuti`
@@ -222,7 +218,8 @@ INSERT INTO `cuti` (`id_cuti`, `id_user`, `tgl_permohonan`, `tujuan_cuti`, `hp`,
 (1, '187', '2015-05-23', 'Pulang Kampung', '', 0),
 (2, '194', '2015-05-15', 'Keperluan Keluarga', '', 0),
 (3, '193', '2015-06-04', 'Pulang kampung', '0818972585', 2),
-(4, '193', '2015-06-15', 'Betulin motor yang rusak', '0818972585', 3);
+(4, '193', '2015-06-15', 'Betulin motor yang rusak', '0818972585', 3),
+(5, '193', '2015-05-29', 'sakit perut', '90909', 2000);
 
 -- --------------------------------------------------------
 
@@ -272,7 +269,8 @@ CREATE TABLE IF NOT EXISTS `dealer` (
 INSERT INTO `dealer` (`id_dealer`, `nama`, `alamat`, `kota`, `telp`, `fax`, `salesmanager`, `servicemanager`, `npwp`) VALUES
 ('03', 'CTU Bali', 'Jl. Uluwatu 1 No. 88 Jimbaran Bali\r\nDenpasar - Bali 80118\r\nIndonesia\r\n', 'Bali', '+62 361 709955', '+62 361 709956', 'Stefany Untariady', '', '01.160.756.9-014.000'),
 ('02', 'CTU Pondok Indah', 'JL.Sultan Iskandar Muda No.81\r\nArteri Pondok Indah\r\nJakarta Selatan\r\n\r\n', 'Jakarta Selatan', '+62-21-729 3337/38', '+62-21-729 1146 ', 'Suryo Kuspurwoko', '', '01.160.756.9-014.000'),
-('01', 'CTU Head Office', 'JL.Sultan Iskandar Muda No.81Arteri Pondok IndahJakarta Selatan ', 'Jakarta Pusat', '+62-21-729 3337/38 ', '+62-21-729 1146 ', 'Dwi Yudha', 'aa', '01.160.756.9-014.000');
+('01', 'CTU Head Office', 'JL.Sultan Iskandar Muda No.81Arteri Pondok IndahJakarta Selatan ', 'Jakarta Pusat', '+62-21-729 3337/38 ', '+62-21-729 1146 ', 'Dwi Yudha', 'aa', '01.160.756.9-014.000'),
+('4', 'Astra Honda Pusat', '', 'DKI Jakarta', '09999', '0808218', 'Ridwan', 'Kamil', '91292192919');
 
 -- --------------------------------------------------------
 
@@ -287,14 +285,14 @@ CREATE TABLE IF NOT EXISTS `dispenser` (
   `id_tangki` varchar(5) NOT NULL,
   `nama_dispenser` varchar(30) NOT NULL,
   PRIMARY KEY (`id_dispenser`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `dispenser`
 --
 
 INSERT INTO `dispenser` (`id_dispenser`, `kd_dispenser`, `id_pompa`, `id_tangki`, `nama_dispenser`) VALUES
-(2, '1A1', '1', '1', 'Premium'),
+(2, '1A1', '2', '2', 'Premium'),
 (3, '1A2', '1', '2', 'Pertamax'),
 (4, '1A3', '1', '3', 'Pertalite'),
 (5, '1B1', '1', '1', 'Premium'),
@@ -341,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `keterangan` text COLLATE latin1_general_ci NOT NULL,
   `gbr_gallery` varchar(100) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`id_gallery`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `gallery`
@@ -383,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `kategori` (
   PRIMARY KEY (`id_kategori`),
   UNIQUE KEY `id_kategori` (`id_kategori`),
   UNIQUE KEY `kd_kategori` (`kd_kategori`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `kategori`
@@ -409,14 +407,14 @@ CREATE TABLE IF NOT EXISTS `mainmenu` (
   `urutan` int(2) NOT NULL,
   `level` varchar(20) NOT NULL,
   PRIMARY KEY (`id_main`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `mainmenu`
 --
 
 INSERT INTO `mainmenu` (`id_main`, `nama_menu`, `link`, `aktif`, `urutan`, `level`) VALUES
-(1, 'Berita', '#', 'Y', 3, 'admin'),
+(15, 'Berita', '#', 'Y', 3, 'admin'),
 (5, 'Sales', '#', 'Y', 1, 'admin'),
 (7, 'Finance', '#', 'Y', 6, 'admin'),
 (8, 'Other', '#', 'Y', 9, 'admin'),
@@ -440,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `masterbarang` (
   PRIMARY KEY (`id_barang`),
   UNIQUE KEY `id_barang` (`id_barang`),
   UNIQUE KEY `kd_barang` (`kd_barang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `masterbarang`
@@ -450,7 +448,7 @@ INSERT INTO `masterbarang` (`id_barang`, `kd_barang`, `nama_barang`, `satuan`, `
 (1, 'SP1', 'Premium', 'L', '7400.00', '9'),
 (2, 'SP2', 'Pertamax', 'L', '9300.00', '10'),
 (3, 'SP3', 'Solar', 'L', '5600.00', '11'),
-(7, 'SP4', 'Pertalite', 'L', '8300.00', '12');
+(7, 'SP4', 'Pertalite', 'L', '8300.00', '0');
 
 -- --------------------------------------------------------
 
@@ -498,7 +496,7 @@ CREATE TABLE IF NOT EXISTS `modul` (
   `urutan` int(5) NOT NULL,
   `link_seo` varchar(50) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`id_modul`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=201 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=202 ;
 
 --
 -- Dumping data for table `modul`
@@ -532,7 +530,7 @@ CREATE TABLE IF NOT EXISTS `operator` (
   `blokir` varchar(1) NOT NULL,
   `foto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_operator`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `operator`
@@ -555,7 +553,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `tanggal_orders` date DEFAULT NULL,
   `status` varchar(15) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_orders`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `orders`
@@ -630,7 +628,7 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   `cdma` varchar(20) COLLATE latin1_general_ci NOT NULL,
   `email` varchar(75) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_pelanggan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1581 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1582 ;
 
 --
 -- Dumping data for table `pelanggan`
@@ -2150,7 +2148,7 @@ CREATE TABLE IF NOT EXISTS `penjualan` (
   `kredit` decimal(12,2) NOT NULL,
   `debit` decimal(12,2) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `penjualan`
@@ -2158,9 +2156,40 @@ CREATE TABLE IF NOT EXISTS `penjualan` (
 
 INSERT INTO `penjualan` (`id_penjualan`, `kd_dispenser`, `id_op`, `meteran_awal`, `meteran_akhir`, `tgl_penjualan`, `jam_mulai`, `jam_selesai`, `kd_barang`, `qty`, `hpp`, `harga_jual`, `total`, `cash`, `kupon`, `kredit`, `debit`) VALUES
 (1, '1A2', '11', '5000000.00', '5001000.00', '2015-10-01', '06:00', '18:00', 'SP1', 1000, '5000.00', '7400.00', '7400000.00', '0.00', '0.00', '0.00', '7400000.00'),
-(3, '1A1', '11', '5000.00', '13000.00', '2015-10-01', '22:00', '24:00', 'SP1', 8000, '4000.00', '40000.00', '15000.00', '0.00', '0.00', '10000.00', '320000000.00'),
-(4, '1A2', '11', '0.00', '0.00', '2015-10-17', '', '', 'SP4', 0, '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
-(5, '1B2', '11', '0.00', '0.00', '2015-10-17', '', '', 'SP4', 0, '6000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00');
+(11, '1A1', '10', '5000.00', '6000.00', '2015-11-18', '06:00', '18:00', 'SP1', 1000, '5000.00', '6000.00', '6000000.00', '10000.00', '0.00', '0.00', '0.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `po`
+--
+
+CREATE TABLE IF NOT EXISTS `po` (
+  `id_po` int(11) NOT NULL AUTO_INCREMENT,
+  `id_supplier` varchar(4) NOT NULL,
+  `tgl_po` date NOT NULL,
+  `jumlah_total` decimal(12,2) NOT NULL,
+  `id_cabang` int(6) NOT NULL,
+  `id_user` int(6) NOT NULL,
+  `s1` varchar(1) NOT NULL DEFAULT 'T',
+  PRIMARY KEY (`id_po`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `podetail`
+--
+
+CREATE TABLE IF NOT EXISTS `podetail` (
+  `id_podetail` int(6) NOT NULL AUTO_INCREMENT,
+  `id_po` int(11) NOT NULL,
+  `kd_barang` varchar(15) NOT NULL,
+  `nama_barang` varchar(50) NOT NULL,
+  `harga_beli` decimal(12,2) NOT NULL,
+  `qty` int(3) NOT NULL,
+  PRIMARY KEY (`id_podetail`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2173,7 +2202,7 @@ CREATE TABLE IF NOT EXISTS `pompa` (
   `id_tangki` varchar(5) NOT NULL,
   `nama_pompa` varchar(30) NOT NULL,
   PRIMARY KEY (`id_pompa`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `pompa`
@@ -2210,7 +2239,7 @@ CREATE TABLE IF NOT EXISTS `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `produk_seo`, `deskripsi`, `harga`, `stok`, `berat`, `tgl_masuk`, `gambar`, `dibeli`, `diskon`) VALUES
-(14, 4, 'Motorola RAZR V3m Red', 'motorola-razr-v3m-red', 'The Motorola Red RAZR V3m for Sprint combines powerful technology and chic style with social activism in a cell phone that makes a strong statement to the world.<br />\r\nFeatures: Bluetooth Wireless Technology, 1.3 Megapixel Digital Camera Takes Print-quality Stills or Video Clips, Less Than 1/2-inch Thick With Feather-touch Precision Crafted Keypad,&nbsp; Built-in Music Player With Removable, Expandable Memory Card Slot, Stunning Red Shell Is Made From Aircraft-grade Aluminum, Motorola Will Contribute A Portion Of The Red Razr Proceeds To Help Fight Aids In Africa, Watch On-demand Sprint TV or Listen To Streaming Music With Sprint Music Store.<br />\r\n', 2500000, 24, '0.50', '2009-05-25', '9motorola_razr.jpg', 28, 0),
+(14, 11, 'Motorola RAZR V3m Blue', '', 'The Motorola Red RAZR V3m for Sprint combines powerful technology and chic style with social activism in a cell phone that makes a strong statement to the world.<br />\r\nFeatures: Bluetooth Wireless Technology, 1.3 Megapixel Digital Camera Takes Print-quality Stills or Video Clips, Less Than 1/2-inch Thick With Feather-touch Precision Crafted Keypad,Â  Built-in Music Player With Removable, Expandable Memory Card Slot, Stunning Red Shell Is Made From Aircraft-grade Aluminum, Motorola Will Contribute A Portion Of The Red Razr Proceeds To Help Fight Aids In Africa, Watch On-demand Sprint TV or Listen To Streaming Music With Sprint Music Store.<br />\r\n', 2500000, 24, '0.50', '2009-05-25', '9motorola_razr.jpg', 28, 0),
 (15, 5, 'LG Chocolate VX8550 Blue', 'lg-chocolate-vx8550-blue', 'The LG Chocolate VX8550 for Verizon Wireless - now available with a chic &quot;blue ice&quot; color scheme - is the first Verizon Wireless phone with a soft-touch keypad, external graphic equalizer, streaming or downloadable music from VCAST, and the capability to transfer music to and from your PC (USB cable required).<br />\r\n<br />\r\nFeatures:<br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp; * Advanced Voice Dialing Lets Your Operate Your Phone Without Pre-training<br />\r\n&nbsp;&nbsp;&nbsp; * 1.3 Megapixel Camera Takes Print-quality Photo And Hour-long Video Clips<br />\r\n&nbsp;&nbsp;&nbsp; * High-speed Data Downloads Let You Watch TV Or Listen To Streaming Music<br />\r\n&nbsp;&nbsp;&nbsp; * First Phone To Play Either Downloaded V CAST Music or PC-transferred Music Files<br />\r\n&nbsp;&nbsp;&nbsp; * Stylish Slider Design With Soft-touch External Controls<br />\r\n&nbsp;&nbsp;&nbsp; * Huge, Vibrant Color Display<br />\r\n&nbsp;&nbsp;&nbsp; * Wirelessly Stream Music To A Stereo Bluetooth Headset\r\n', 3450000, 43, '1.00', '2009-06-02', '39lg_vx8550.jpg', 16, 0),
 (16, 7, 'Samsung FlipShot SCH-U900', 'samsung-flipshot-schu900', 'The Samsung U900 for Verizon Wireless is the update to the flagship Samsung A990. Features: Advanced Voice Activated Dialing Requires No Phone Pre-training, Advanced Bluetooth Wireless Technology With Streaming Stereo Music Support, Huge Color Main Display and Color External Display, Built-in Music Player Lets You Download From V CAST Music Service, One of the Best Digital Camera/Camcorders In A Mobile Phone Today, Next Generation (EV-DO) Technology Gives You Downloads At Near-Broadband Speeds, Watch On-demand TV or Listen to Music Via Verizon V CAST, Take Extra-long Video Clips With Very Good Resolution.\r\n', 4500000, 28, '0.50', '2009-06-02', '21samsung_u900.jpg', 38, 0),
 (18, 3, 'Sony Ericsson W200i', 'sony-ericsson-w200i', 'The Sony Ericsson specially Phone for Walkman - now available with a chic &quot;blue ice&quot; color scheme - is the first Verizon Wireless phone with a soft-touch keypad, external graphic equalizer, streaming or downloadable music from VCAST, and the capability to transfer music to and from your PC (USB cable required).<br />\r\n<br />\r\nFeatures:<br />\r\n<br />\r\n    * Advanced Voice Dialing Lets Your Operate Your Phone Without Pre-training<br />\r\n    * 1.3 Megapixel Camera Takes Print-quality Photo And Hour-long Video Clips<br />\r\n    * High-speed Data Downloads Let You Watch TV Or Listen To Streaming Music<br />\r\n    * First Phone To Play Either Downloaded V CAST Music or PC-transferred Music Files<br />\r\n    * Stylish Slider Design With Soft-touch External Controls<br />\r\n    * Huge, Vibrant Color Display<br />\r\n    * Wirelessly Stream Music To A Stereo Bluetooth Headset<br />\r\n', 1100000, 44, '0.50', '2009-09-28', '36se_w200i.jpg', 16, 20),
@@ -2234,7 +2263,7 @@ CREATE TABLE IF NOT EXISTS `stok` (
   `harga_awal` decimal(12,2) NOT NULL,
   `hpp` decimal(12,2) NOT NULL,
   PRIMARY KEY (`id_stok`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `stok`
@@ -2262,7 +2291,7 @@ CREATE TABLE IF NOT EXISTS `submenu` (
   `urutan` int(3) NOT NULL,
   `level` varchar(200) NOT NULL,
   PRIMARY KEY (`id_sub`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Dumping data for table `submenu`
@@ -2284,8 +2313,6 @@ INSERT INTO `submenu` (`id_sub`, `nama_sub`, `link_sub`, `id_main`, `aktif`, `ur
 (62, 'Album', '?module=album', 9, 'Y', 29, 'admin'),
 (63, 'Gallery', '?module=gallery', 9, 'Y', 29, 'admin'),
 (78, 'Pembayaran', '?module=pembayaran', 7, 'Y', 0, 'admin'),
-(81, 'Order', '?module=order', 5, 'Y', 2, 'admin'),
-(83, 'Cuti Karyawan', '?module=cuti', 14, 'Y', 1, 'admin'),
 (82, 'Produk', '?module=produk', 5, 'Y', 3, 'admin'),
 (85, 'Master Barang', '?module=masterbarang', 10, 'Y', 1, 'admin'),
 (86, 'Kategori', '?module=kategori', 10, 'Y', 1, 'admin'),
@@ -2297,7 +2324,27 @@ INSERT INTO `submenu` (`id_sub`, `nama_sub`, `link_sub`, `id_main`, `aktif`, `ur
 (92, 'Penjualan', '?module=penjualan', 5, 'Y', 1, 'admin'),
 (94, 'Dealer', '?module=dealer', 8, 'Y', 9, 'gm'),
 (95, 'Stok', '?module=stok', 10, 'Y', 0, 'sales'),
-(96, 'Operator', '?module=operator', 10, 'Y', 1, 'admin');
+(96, 'Operator', '?module=operator', 10, 'Y', 1, 'admin'),
+(98, 'Pembelian', '?module=po', 5, '', 0, 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE IF NOT EXISTS `supplier` (
+  `id_supplier` varchar(4) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `alamat` varchar(45) NOT NULL,
+  `kota` varchar(20) NOT NULL,
+  `telp` int(11) NOT NULL,
+  `fax` varchar(12) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `pic` varchar(20) NOT NULL,
+  `keterangan` varchar(45) NOT NULL,
+  `ppn` decimal(12,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2346,7 +2393,7 @@ CREATE TABLE IF NOT EXISTS `tangki` (
   `isi_tangki` varchar(30) NOT NULL,
   PRIMARY KEY (`id_tangki`),
   UNIQUE KEY `kd_tangki` (`kd_tangki`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tangki`
@@ -2380,20 +2427,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id_session` varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
   `foto` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=207 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=209 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `alamat`, `kota`, `telp`, `id_cabang`, `id_atasan`, `username`, `password`, `level`, `email`, `blokir`, `id_session`, `foto`) VALUES
-(187, 'Olani Ertina Veronica', 'Jalan Haji Taiman barat no.7 Rt. 002/010 Pasar Rebo, 13760', 'Jakarta Timur', '081287265595', '02', '182', 'gm', '92073d2fe26e543ce222cc0fb0b7d7a0', 'gm', 'olani.veronica@1firstrent.com', 'N', '0p69te6fabkhdlb0tqlgnb3ot6', 'olani.jpg'),
-(182, 'Suryo Kuspurwoko', 'JL, Kenari', 'Jakarta', '08143444', '02', '0', 'director', '3d4e992d8d8a7d848724aa26ed7f4176', 'director', 'sutyo@yahoo.com', 'N', 'fcgb6719ncmvo5ljcf8ikkd683', 'suryo.jpg'),
+(187, 'Olani Ertina Veronica', 'Jalan Haji Taiman barat no.7 Rt. 002/010 Pasar Rebo, 13760', 'Jakarta Timur', '081287265595', '02', '182', 'gm', '92073d2fe26e543ce222cc0fb0b7d7a0', 'gm', 'olani.veronica@1firstrent.com', 'N', '7b7pbsqooqsa2o4t5le0gj4624', 'olani.jpg'),
+(182, 'Suryo Kuspurwoko', 'JL, Kenari', 'Jakarta', '08143444', '02', '0', 'director', '3d4e992d8d8a7d848724aa26ed7f4176', 'director', 'sutyo@yahoo.com', 'N', 'rh107nnkc8b627p2qe9bnrgod7', 'suryo.jpg'),
 (183, 'Meilina Lubis', 'Tanjung Priok', 'Jakarta Utara', '0811425255', '01', '205', 'supervisor', '09348c20a019be0318387c08df7a783d', 'supervisor', 'meilina@1firstrent.com', 'N', 'ai98tskl3h1blsmhgnd1lqtku3', 'lina.jpg'),
-(193, 'Dani Yusuf', 'Mawar 4 No.21 Perumnas 1 Bekasi', 'Bekasi', '0813552522', '01', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'daniyusuf@yahoo.com', 'N', '5vgcc4sgfqd616omu2fkjc7bn1', 'daniyusuf.jpg'),
-(194, 'Fitri Awaliyah', 'JL. Jalak Suren', 'Jakarta', '088945252', '02', '183', 'sales1', '00db8f14ff00dd9a2e707391332c3447', 'sales', 'fitri.awaliyah@1firstrent.com', 'N', 'a63gs1fcaue0ahjn6cq2bqkbd3', 'fitriawaliyah.jpg'),
-(195, 'Nella Tristisia', 'Cilincing Tanjung Priok', 'Jakarta Utara', '08176412932', '01', '183', 'sales2', 'bc62e62c719e0185b0874a4c8d4f87cf', 'sales', 'nella@autoinvesta', 'N', 'n1h4e6sa15aes122a7tb3b6465', 'nella.jpg'),
-(205, 'Bobby Ryandra', 'JL. Nangka Permai', 'Bandung', '085252545r24', '02', '187', 'manager', '1d0258c2440a8d19e716292b231e3190', 'manager', 'bobby.ryandra@1firstrent.com', 'N', '2i9rqq3mj4q1epsfeguo1scar2', 'bobby.jpg');
+(193, 'Dani Yusuf', 'Mawar 4 No.21 Perumnas 1 Bekasi', 'Bekasi', '0813552522', '01', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'daniyusuf@yahoo.com', 'N', '1vpb5heum60ou697qafa1rdte0', 'daniyusuf.jpg'),
+(194, 'Fitri Awaliyah', 'JL. Jalak Suren', 'Jakarta', '088945252', '02', '183', 'sales1', '00db8f14ff00dd9a2e707391332c3447', 'sales', 'fitri.awaliyah@1firstrent.com', 'N', 'a63gs1fcaue0ahjn6cq2bqkbd3', 'fitriawaliyah.jpg');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

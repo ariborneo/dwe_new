@@ -119,7 +119,6 @@ switch($_GET['act']){
                 <tr><td>Service Manager</td><td>$r[7]</td></tr> 
                 <tr><td>NPWP</td><td>$r[8]</td></tr> 
                 <tr><td colspan=2>
-                            <input class=\"btn btn-primary\" type=submit value=Update>
                             <input class=\"btn btn-danger\" type=button value=Batal onclick=self.history.back()></td></tr>
               </table>";     
     }

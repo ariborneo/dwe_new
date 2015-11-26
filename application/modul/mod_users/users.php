@@ -15,9 +15,9 @@ switch($_GET['act']){
     if ($_SESSION['leveluser']=='admin'){
       $tampil = mysql_query("SELECT * FROM users ORDER BY level");
       echo "
-            <div class=\"col-md-12\" style=\"margin-bottom:10px;\">
+            <div class=\"col-md-12\" style=\"margin-bottom:20px;\">
               <h2>User</h2>
-              <input class='btn btn-primary' input type=button value='Tambah User' onclick=\"window.location.href='?module=users&act=tambahuser';\">
+              <input class='btn btn-primary' type=button value='Tambah User' onclick=\"window.location.href='?module=users&act=tambahuser';\">
             </div>";  
     }
     else{

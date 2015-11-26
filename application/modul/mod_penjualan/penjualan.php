@@ -168,7 +168,7 @@ function harusangka(jumlah){
                     <tr><td>Tanggal Penjualan</td><td><input class=\"form-control\" type=text name='tgl_penjualan' value='$tglsekarang'></td></tr>
                     <tr><td>Jam Mulai</td> <td><input class=\"form-control\" type=text name='jam_mulai'></td></tr>
                     <tr><td>Jam Selesai</td><td><input class=\"form-control\" type=text name='jam_selesai'></td></tr>
-                    <tr><td>Kode Barang</td><td>  
+                    <tr><td>Kode Barang</td><td> 
                     <select name='kd_barang' class=\"form-control\">
                       <option value=0 selected>- Pilih Kode Barang -</option>";
                       $hpp = mysql_query("SELECT masterbarang.kd_barang,

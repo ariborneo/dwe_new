@@ -121,6 +121,12 @@ elseif ($_GET['module']=='penjualandetail'){
 elseif ($_GET['module']=='operator'){
     include "modul/mod_operator/operator.php";
 }
+elseif ($_GET['module']=='po'){
+    include "modul/mod_po/po.php";
+}
+elseif ($_GET['module']=='po'){
+    include "modul/mod_podetail/podetail.php";
+}
 // Apabila modul tidak ditemukan
 else{
   echo "<p><b>MODUL BELUM ADA ATAU BELUM LENGKAP</b></p>";

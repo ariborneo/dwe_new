@@ -11,7 +11,7 @@ switch($_GET['act']){
   // Tampil Menu Utama
   default:
     echo "
-          <div class=\"col-md-12\" style=\"margin-bottom:10px;\">
+          <div class=\"col-md-12\" style=\"margin-bottom:20px;\">
         		<h2>Menu Utama</h2>
             <input class='btn btn-primary' value='Tambah Menu Utama' onclick=\"window.location.href='?module=menuutama&act=tambahmenuutama';\">
         		<br><br>

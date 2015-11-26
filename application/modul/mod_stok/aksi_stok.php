@@ -18,7 +18,6 @@ else{
       mysql_query("INSERT INTO stok VALUES('NULL',
                                             '$_POST[kd_barang]',
                                             '$_POST[jumlah_stok]',
-                                            '$_POST[kd_cabang]',
                                             '$_POST[harga_awal]',
                                             '$_POST[hpp]' 
                                       WHERE 'kd_barang' = '001')");
@@ -27,7 +26,6 @@ else{
       mysql_query("INSERT INTO stok VALUES('NULL',
                                               '$_POST[kd_barang]',
                                               '$_POST[jumlah_stok]',
-                                              '$_POST[kd_cabang]',
                                               '$_POST[harga_awal]',
                                               '$_POST[hpp]')");
     }                                          
@@ -38,7 +36,6 @@ else{
   elseif ($module=='stok' AND $act=='update'){
       mysql_query("UPDATE stok SET kd_barang='$_POST[kd_barang]',
                                     jumlah_stok='$_POST[jumlah_stok]',
-                                    kd_cabang='$_POST[kd_cabang]',
                                     harga_awal='$_POST[harga_awal]',
   																	hpp='$_POST[hpp]'            									  
                              WHERE  id_stok  = '$_POST[id]'");

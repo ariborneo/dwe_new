@@ -22,6 +22,7 @@ else{
   //============================================//
   $harga = $_POST['harga_jual'];
   $total = $quantity * $harga;
+  //total = cash + kupon + kredit + debit;
   // Input penjualan
   if ($module=='penjualan' AND $act=='input'){
     $select = $_POST['kd_barang'];
@@ -56,7 +57,7 @@ else{
                                               '$_POST[tgl_penjualan]',
                                               '$_POST[jam_mulai]',
                                               '$_POST[jam_selesai]',
-                                              '$kdresult',  
+                                              '$kdresult',
                                               '$quantity',
                                               '$hppresult',
                                               '$_POST[harga_jual]',

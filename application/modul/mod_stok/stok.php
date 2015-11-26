@@ -91,7 +91,6 @@ function harusangka(jumlah){
           			<th>No</th>
                 <th>Kode Barang</th>
                 <th>Jumlah Stok</th>
-                <th>Kode Cabang</th>
                 <th>Harga Awal</th>
                 <th>Harga Pokok Penjualan</th>
                 <th><center>Proses</th>
@@ -104,7 +103,6 @@ function harusangka(jumlah){
           			<tr><td>$no</td>
                 <td>$r[kd_barang]</td>
                 <td>$r[jumlah_stok]</td>
-                <td>$r[kd_cabang]</td>
                 <td>".number_format($r['harga_awal'])."</td>
                 <td>".number_format($r['hpp'])."</td>
                 <td>
@@ -136,16 +134,7 @@ function harusangka(jumlah){
                         }
                         echo "</select></td>
                     </tr>           
-            					<tr><td>Jumlah Stok</td><td><input class=\"form-control\" type=text name='jumlah_stok'></td></tr> 
-            					<tr><td>Kode Cabang</td><td>
-                      <select name='kd_cabang' class=\"form-control\">
-                        <option value=0 selected>- Pilih Kode Cabang -</option>";
-                        $tampil=mysql_query("SELECT * FROM cabang ORDER BY kd_cabang");
-                        while($r=mysql_fetch_array($tampil)){
-                          echo "<option value=$r[kd_cabang]>$r[kd_cabang]</option>";
-                        }
-                        echo "</select></td>
-                    </tr>
+            				<tr><td>Jumlah Stok</td><td><input class=\"form-control\" type=text name='jumlah_stok'></td></tr> 
           					<tr><td>Harga Awal</td><td><input class=\"form-control\" type=text name='harga_awal'></td></tr> 
           					<tr><td>Harga Pokok Penjualan</td><td><input class=\"form-control\" type=text name='hpp'></td></tr> 
           					<tr>
@@ -170,7 +159,6 @@ function harusangka(jumlah){
           			<table id='example1' class='table table-bordered table-striped'>
             			<tr><td>Kode Barang</td><td><input class=\"form-control\" type=text name='kd_barang' value='$r[kd_barang]'></td></tr>         
             			<tr><td>Jumlah Stok</td><td><input class=\"form-control\" type=text name='jumlah_stok' value='$r[jumlah_stok]'></td></tr> 
-            			<tr><td>Kode Cabang</td><td><input class=\"form-control\" type=text name='kd_cabang' value='$r[kd_cabang]'></td></tr>
             			<tr><td>Harga Awal</td><td><input class=\"form-control\" type=text name='harga_awal' value='$r[harga_awal]'></td></tr> 
             			<tr><td>Harga Jual</td><td><input class=\"form-control\" type=text name='hpp' value='$r[hpp]'></td></tr> 
             			<tr><td colspan=2>
@@ -190,8 +178,7 @@ function harusangka(jumlah){
               <input type=hidden name=id value='$r[id_stok]'>
                 <table id='example1' class='table table-bordered table-hover'>
                   <tr><td>Kode Barang</td><td>$r[kd_barang]</td></tr>         
-                  <tr><td>Jumlah Stok</td><td>$r[jumlah_stok]</td></tr> 
-                  <tr><td>Kode Cabang</td><td>$r[kd_cabang]</td></tr>
+                  <tr><td>Jumlah Stok</td><td>$r[jumlah_stok]</td></tr>
                   <tr><td>Harga Awal</td><td>$r[harga_awal]</td></tr> 
                   <tr><td>Harga Jual</td><td>$r[hpp]</td></tr> 
                   <tr><td colspan=2>

@@ -37,16 +37,12 @@ else{
                  <td><center>
                     <a href=?module=cabang&act=detailcabang&id=$r[id_cabang]><span class=\"glyphicon glyphicon-search\"></span>&nbsp;&nbsp;&nbsp;
       							<a href=?module=cabang&act=editcabang&id=$r[id_cabang]><span class=\"glyphicon glyphicon-pencil\"></span>&nbsp;&nbsp;&nbsp;
+                    <a href=$aksi?module=cabang&act=hapus&id=$r[id_cabang]><span class=\"glyphicon glyphicon-remove\"></span></center>
                  </td>
                </tr>";
                 $no++;
               }
       echo "  </table>
-              <div class=\"alert alert-danger\" role=\"alert\">
-                <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
-                <span class=\"sr-only\">Error:</span>
-                  Data pada Cabang tidak bisa dihapus, tapi bisa di non-aktifkan melalui Edit Cabang.
-               </div>
             </div>";
       break;
     
